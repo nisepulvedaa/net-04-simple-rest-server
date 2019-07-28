@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestServerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Rut" Type="Int32" />
+    <Property Name="DvRut" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Edad" Type="Int32" />
+    <Property Name="Direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="RestServerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Persona" EntityType="Self.Persona" />
+    <FunctionImport Name="EliminarPersona">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="InsertarPersona">
+      <Parameter Name="nombres" Mode="In" Type="String" />
+      <Parameter Name="apellidos" Mode="In" Type="String" />
+      <Parameter Name="rut" Mode="In" Type="Int32" />
+      <Parameter Name="dvrut" Mode="In" Type="String" />
+      <Parameter Name="edad" Mode="In" Type="Int32" />
+      <Parameter Name="direccion" Mode="In" Type="String" />
+      <Parameter Name="correo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ActualizarPersona">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="nombres" Mode="In" Type="String" />
+      <Parameter Name="apellidos" Mode="In" Type="String" />
+      <Parameter Name="rut" Mode="In" Type="Int32" />
+      <Parameter Name="dvrut" Mode="In" Type="String" />
+      <Parameter Name="edad" Mode="In" Type="Int32" />
+      <Parameter Name="direccion" Mode="In" Type="String" />
+      <Parameter Name="correo" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

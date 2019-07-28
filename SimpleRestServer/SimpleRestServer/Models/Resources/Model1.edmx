@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RestServerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="250" />
+          <Property Name="Rut" Type="int" />
+          <Property Name="DvRut" Type="char" MaxLength="1" />
+          <Property Name="Edad" Type="int" />
+          <Property Name="Direccion" Type="varchar" MaxLength="250" />
+          <Property Name="Correo" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <Function Name="ActualizarPersona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="nombres" Type="varchar" Mode="In" />
+          <Parameter Name="apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="rut" Type="int" Mode="In" />
+          <Parameter Name="dvrut" Type="char" Mode="In" />
+          <Parameter Name="edad" Type="int" Mode="In" />
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="correo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="EliminarPersona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertarPersona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombres" Type="varchar" Mode="In" />
+          <Parameter Name="apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="rut" Type="int" Mode="In" />
+          <Parameter Name="dvrut" Type="char" Mode="In" />
+          <Parameter Name="edad" Type="int" Mode="In" />
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="correo" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="RestServerModelStoreContainer">
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RestServerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Rut" Type="Int32" />
+          <Property Name="DvRut" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Edad" Type="Int32" />
+          <Property Name="Direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="RestServerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Persona" EntityType="Self.Persona" />
+          <FunctionImport Name="EliminarPersona">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertarPersona">
+            <Parameter Name="nombres" Mode="In" Type="String" />
+            <Parameter Name="apellidos" Mode="In" Type="String" />
+            <Parameter Name="rut" Mode="In" Type="Int32" />
+            <Parameter Name="dvrut" Mode="In" Type="String" />
+            <Parameter Name="edad" Mode="In" Type="Int32" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="correo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ActualizarPersona">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="nombres" Mode="In" Type="String" />
+            <Parameter Name="apellidos" Mode="In" Type="String" />
+            <Parameter Name="rut" Mode="In" Type="Int32" />
+            <Parameter Name="dvrut" Mode="In" Type="String" />
+            <Parameter Name="edad" Mode="In" Type="Int32" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="correo" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RestServerModelStoreContainer" CdmEntityContainer="RestServerEntities">
+          <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="RestServerModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+                <ScalarProperty Name="DvRut" ColumnName="DvRut" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="EliminarPersona" FunctionName="RestServerModel.Store.EliminarPersona" />
+          <FunctionImportMapping FunctionImportName="InsertarPersona" FunctionName="RestServerModel.Store.InsertarPersona" />
+          <FunctionImportMapping FunctionImportName="ActualizarPersona" FunctionName="RestServerModel.Store.ActualizarPersona" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
